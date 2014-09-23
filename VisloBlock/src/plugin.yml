@@ -1,0 +1,4 @@
+name: VisloBlock
+main: com.vislo.VisloBlock.VisloBlock
+version: 2.0
+author: [Vislo]
