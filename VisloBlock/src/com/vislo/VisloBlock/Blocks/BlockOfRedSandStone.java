@@ -1,4 +1,4 @@
-package com.vislo.VisloBlock;
+package com.vislo.VisloBlock.Blocks;
 
 import net.minecraft.server.v1_7_R4.Block;
 import net.minecraft.server.v1_7_R4.CreativeModeTab;

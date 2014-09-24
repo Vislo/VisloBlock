@@ -1,4 +1,4 @@
-package com.vislo.VisloBlock;
+package com.vislo.VisloBlock.Utils;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Array;
@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.Material;
 
@@ -21,6 +22,37 @@ public class DynamicEnumType
 	private static Method newFieldAccesor;
 	private static Method fieldAccesorSet;
 
+	@SuppressWarnings("unchecked")
+	public static Material addMaterial(String name, int id)
+	{
+		Material material = (Material) DynamicEnumType.addEnum(Material.class,
+				name, new Class[] { Integer.TYPE }, new Object[] { id });
+		try
+		{
+			Field field = Material.class.getDeclaredField("BY_NAME");
+			field.setAccessible(true);
+			Object object = field.get(null);
+
+			Map<String, Material> BY_NAME = (Map<String, Material>) object;
+			BY_NAME.put(name, material);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		try
+		{
+			Field field = Material.class.getDeclaredField("byId");
+			field.setAccessible(true);
+			Object object = field.get(null);
+			Material[] byId = (Material[]) object;
+
+			byId[id] = material;
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return material;
+	}
 	public static void loadReflection() throws NoSuchMethodException,
 			SecurityException, ClassNotFoundException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException
