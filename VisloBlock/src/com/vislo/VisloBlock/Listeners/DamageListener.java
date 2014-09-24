@@ -1,4 +1,4 @@
-package com.vislo.VisloBlock;
+package com.vislo.VisloBlock.Listeners;
 
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
