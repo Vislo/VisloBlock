@@ -57,7 +57,7 @@ public class VisloBlock extends JavaPlugin
 	{
 		Material material = (Material) DynamicEnumType.addEnum(Material.class,
 				name, new Class[] { Integer.TYPE },
-				new Object[] { Integer.valueOf(id) });
+				new Object[] { id });
 		try
 		{
 			Field field = Material.class.getDeclaredField("BY_NAME");

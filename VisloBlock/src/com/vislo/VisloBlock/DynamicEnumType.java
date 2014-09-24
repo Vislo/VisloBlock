@@ -104,10 +104,9 @@ public class DynamicEnumType
 		System.arraycopy(additionalParameterTypes, 0, parameterTypes, 2,
 				additionalParameterTypes.length);
 		return newconstructorAccesor
-				.invoke(reflectionRealFactory, new Object[] { enumClass
-						.getDeclaredConstructor(parameterTypes) });
+				.invoke(reflectionRealFactory,  enumClass
+						.getDeclaredConstructor(parameterTypes) );
 	}
-
 	public static Object makeEnum(Class<?> enumClass, String value,
 			int ordinal, Class<?>[] additionalTypes, Object[] additionalValues)
 			throws Exception
@@ -149,7 +148,7 @@ public class DynamicEnumType
 			List<T> values = new ArrayList<T>(Arrays.asList(previousValues));
 
 			T newValue = (T) makeEnum(enumType, enumName, values.size(),
-					new Class<?>[] {}, new Object[] {});
+					paramTypes, paramValues);
 			values.add(newValue);
 
 			setFailsafeFieldValue(valuesField, null,
