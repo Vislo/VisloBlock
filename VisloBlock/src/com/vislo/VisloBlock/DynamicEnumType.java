@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 
 public class DynamicEnumType
@@ -38,14 +37,6 @@ public class DynamicEnumType
 		newFieldAccesor = Class.forName("sun.reflect.ReflectionFactory")
 				.getDeclaredMethod("newFieldAccessor",
 						new Class[] { Field.class, Boolean.TYPE });
-		for (Method m : Class.forName("sun.reflect.ConstructorAccessor")
-				.getDeclaredMethods())
-		{
-			for (Class<?> pm : m.getParameterTypes())
-			{
-				Bukkit.getLogger().info(pm.getName());
-			}
-		}
 		constructorAccesor = Class.forName("sun.reflect.ConstructorAccessor")
 				.getDeclaredMethod("newInstance", Object[].class);
 
